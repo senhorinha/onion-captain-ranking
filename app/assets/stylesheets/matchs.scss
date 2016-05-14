@@ -1,3 +1,44 @@
 // Place all the styles related to the Matchs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// Place all the styles related to the SustainabilityLevelChecks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$golden_color: #FFCF40;
+$silver_color: #DBDBDB;
+$bronze_color: #B08D56;
+
+
+body {
+    padding-top: 90px;
+    width: 100%;
+    height: 100%;
+    background-image: url(asset_path("background.jpg"));
+    background-color: #cccccc;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.score {
+   border-color: #ccc;
+   -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+   -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+   box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+#ranking tr:first-child td {
+  background-color: $golden_color;
+}
+
+#ranking tr:nth-child(2) td {
+  background-color: $silver_color;
+}
+
+#ranking tr:nth-child(3) td {
+  background-color: $bronze_color;
+}
+
+.copyright {
+  margin-right: 30px;
+}

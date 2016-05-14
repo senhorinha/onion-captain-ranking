@@ -1,0 +1,63 @@
+<%- model_class = Match -%>
+<div class="container">
+ <div class="row">
+   <div class="col-md-6 col-md-offset-3">
+     <div class="panel score">
+       <div class="panel-body">
+         <div class="row">
+           <div class="col-lg-12 col-md-12 col-sm-12">
+             <h1 class="text-center"><%= image_tag("is_cebola.png") %></h1>
+             <h2 class="text-center">Ranking</h2>
+             <% if @matchs %>
+               <table id="ranking" class="table table-striped">
+                 <thead>
+                   <tr>
+                     <th>Position</th>
+                     <th>Date</th>
+                     <th>Player</th>
+                     <th>Score</th>
+                   </tr>
+                  </thead>
+                  <tbody id="result-list">
+                    <%if @matchs.empty? %>
+                        <td id="no-results" colspan="3">There is no past results</td>
+                    <% end %>
+                    <% @matchs.each_with_index do |match, index| %>
+                      <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= match.created_at.strftime('%T | %F ') %></td>
+                        <td><%= match.player %></td>
+                        <td><%= match.score %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              <% end %>
+              <div class="copyright row">
+                <div class="text-center">
+                  <a href="https://onion-captain.firebaseapp.com/"><%= image_tag("app.png", class:"img-circle")%></a> <%= image_tag("pudim.png") %> <a href=""><%= image_tag("github.png") %></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#check-button").on("click", function(){
+    var dataSet = $(this).serialize();
+    $.ajax({
+        type: "POST",
+        url: "/check",
+        data: dataSet,
+        success: function(data){
+          $('#no-results').remove();
+          $('#result-list').prepend(data)
+        }
+    });
+    return false;
+  });
+</script>
